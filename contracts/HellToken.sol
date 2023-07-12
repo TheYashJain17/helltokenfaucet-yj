@@ -12,7 +12,6 @@ contract HellToken is ERC20Capped , ERC20Burnable{
 
     address payable public owner;
 
-
     constructor(uint256 cap) ERC20("HellToken" , "HT") ERC20Capped(cap * (10 ** decimals())){
 
         owner = payable(msg.sender);
