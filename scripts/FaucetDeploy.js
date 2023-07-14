@@ -6,7 +6,7 @@ async function main(){
 
     await HellFaucet.waitForDeployment();
 
-    console.log(`The address of the faucet contract i s${HellFaucet.target}`);
+    console.log(`The address of the faucet contract is ${HellFaucet.target}`);
 
 
 
@@ -19,3 +19,6 @@ main().catch((error) => {
     process.exit(1);
 
 })
+
+
+//The address of the faucet contract is 0xC1a1aCD85557CeC872a388Ed80E18bd67e3D0b8A.
