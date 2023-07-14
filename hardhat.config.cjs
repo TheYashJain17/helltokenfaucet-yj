@@ -24,7 +24,7 @@ module.exports = {
 
   paths : {
 
-    artifacts : "./src/FaucetArtifacts"
+    artifacts : "./src/Artifacts"
 
   }
 
