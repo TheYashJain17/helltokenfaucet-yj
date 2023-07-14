@@ -41,7 +41,7 @@ contract tokenFaucet{
 
         withdrawlAmount = 1 * (10 ** 18);
 
-        nextAccessTime = 1 days;
+        nextAccessTime = 1 minutes;
 
     }
 
