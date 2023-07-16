@@ -1,19 +1,82 @@
-.navbar{
+.nav{
 
     background-color: black;
-
     color: white;
-
-    height: 60px;
-
+    height: 85px;
     width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 , 0 , 0 , 0;
+
+}
+
+.nav__title{
+
+    margin-left: 10px;
+    font-size: 40px;
+    font-weight: 700;
+    font-family: serif;
+
+
+}
+
+.nav__connectbtn{
+
+    margin-right: 18px;
+    height: 40px;
+    width: 140px;
 
     display: flex;
-
     align-items: center;
+    justify-content: center;
 
-    justify-content: space-between;
+    background-color: white;
+    color: black;
 
-    padding: 0 , 0 , 0 , 0;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: serif;
+
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+
+    transition: all ease-in 250ms;
+
+
+
+}
+
+.nav__connectbtn:hover{
+
+    background-color: #DC0759;
+    color: white;
+
+
+}
+
+.nav__changenetwork{
+
+    margin-right: 14px;
+    height: 40px;
+    width: 145px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+    color: black;
+
+    font-size: 17px;
+    font-weight: 600;
+    font-family: serif;
+
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+
+    transition: all ease-in 250ms;
 
 }

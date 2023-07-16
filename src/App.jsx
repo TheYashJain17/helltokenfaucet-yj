@@ -9,7 +9,6 @@ function App() {
 
     <Navbar/>
     
-    <h1>GoodBye World</h1>
 
     </>
   )
