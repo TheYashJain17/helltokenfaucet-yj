@@ -31,7 +31,7 @@ const Modal = () => {
 
         <div className="modal__anotherspace">Transaction Data</div>
 
-        <input type="text" className="modal__anotherinput" placeholder='Transaction Hash' />
+        <input  className="modal__anotherinput" placeholder='Transaction Hash' readOnly />
 
     </>
 

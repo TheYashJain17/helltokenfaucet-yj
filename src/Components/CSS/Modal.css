@@ -41,7 +41,9 @@
     align-items: center;
     justify-content: center;
 
-    margin-left: 279px;  
+    margin-left: 279px; 
+    margin-top: 60px;
+
     border-radius: 8px;
 
 
@@ -51,7 +53,7 @@
 .modal__input{
 
     margin-right: 218px;
-    margin-bottom: 95px;
+    margin-bottom: 110px;
     padding-left: 10px;
     height: 42px;
     width: 550px;
@@ -77,7 +79,7 @@
     align-items: center;
     justify-content: center;
     margin-left: 922px;    
-    margin-top: -182px;
+    margin-top: -190px;
     height: 40px;
     width: 145px;
     border-radius: 7px;
@@ -99,7 +101,7 @@
     align-items: center;
     justify-content: center;
     margin-left: 335px;
-    margin-top: 20px;
+    margin-top: 25px;
     color: white;
     
     font-size: 22px;
