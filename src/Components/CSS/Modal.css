@@ -59,7 +59,7 @@
     width: 550px;
     border-radius: 8px;
     border: solid 1px;
-    cursor: pointer;
+    /* cursor: pointer; */
     font-size: 21px;
     margin-left: 40px;
 

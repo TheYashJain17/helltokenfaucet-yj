@@ -1,19 +1,22 @@
-import  ethers  from "ethers";
+import { ethers } from "ethers";
 
-import ABI from "../Artifacts/contracts/HellTokenFaucet.sol";
+import ABI from "../Artifacts/contracts/HellTokenFaucet.sol/tokenFaucet.json";
 
 const contractAddress = '0xC1a1aCD85557CeC872a388Ed80E18bd67e3D0b8A';
 
-const contractInstance = (signer) => {
+const abi = ABI.abi;
+
+const ContractInstance = (signer) => {
 
     return new ethers.Contract(
 
         contractAddress,
-        ABI,
+        abi,
         signer
 
     );
 
 }
 
-export default contractInstance
+export default ContractInstance
+

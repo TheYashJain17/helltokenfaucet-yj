@@ -27,12 +27,12 @@ const Modal = () => {
 
         </div>
 
-        <button className="modal__button">Send Tokens</button>
+        <button className="modal__button" >Send Tokens</button>
 
         <div className="modal__anotherspace">Transaction Data</div>
 
-        <input  className="modal__anotherinput" placeholder='Transaction Hash' readOnly />
-
+        <input  className="modal__anotherinput" placeholder='Transaction Hash' readOnly/>
+e
     </>
 
   )
