@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react'
 
+import {ethers} from 'ethers';
+
 import './CSS/Navbar.css'
 
 import contractInstance from '../Web3/ContractInstance';
+
+import Modal from '../Components/Modal'
 
 const Navbar = () => {
 
@@ -13,7 +17,7 @@ const Navbar = () => {
   const [signer , setSigner] = useState(null);
   
   const [contract , setContract] = useState();
-f
+
   const connectWallet = async() => {
 
     if(ethereum){
@@ -52,11 +56,32 @@ f
     
   }
 
+
+  const setContractInstance = async() =>{
+
+    if(typeof ethereum != "undefined" && account != null){
+      
+      const provider =  new ethers.BrowserProvider(ethereum)
+
+      const signer = await provider.getSigner();
+
+      const contractWithSginer = contractInstance(signer);
   
+      setContract(contractWithSginer);
+
+      console.log(contractWithSginer);
+
+      // console.log(contract);
   
+}
+
+}  
+
   useEffect(() => {
 
     getConnectedAccounts();
+
+    setContractInstance();
 
 
 
@@ -94,8 +119,16 @@ f
     </div>
 
     </nav>
+    
+    <Modal
+
+    contract={contract}
+
+    />
   
     </>
+
+
 
     )
 

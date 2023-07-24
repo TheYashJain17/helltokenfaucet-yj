@@ -1,8 +1,17 @@
 import React from 'react'
 
 import '../Components/CSS/Modal.css'
+ 
+const Modal = ({contract}) => {
 
-const Modal = () => {
+  const sendTokens = async() => {
+
+    const sendingTokens = await contract.requestTokens();
+
+    console.log(sendingTokens);
+
+  }
+
 
   return (
 
@@ -27,7 +36,7 @@ const Modal = () => {
 
         </div>
 
-        <button className="modal__button" >Send Tokens</button>
+        <button className="modal__button" onClick={sendTokens} >Send Tokens</button>
 
         <div className="modal__anotherspace">Transaction Data</div>
 
