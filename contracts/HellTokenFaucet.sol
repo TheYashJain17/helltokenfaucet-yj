@@ -53,17 +53,19 @@ contract tokenFaucet{
 
     }
 
-    function requestTokens() payable external{
+    function requestTokens(address receiver) payable external{
 
-        require(msg.sender != address(0) , "Please Enter A Valid Address");
+        require(receiver != address(0) , "Please Enter A Valid Address");
+
+        require(msg.value == 0.0002 ether , "Amount Should Be Equal To The Price");
 
         require(token.balanceOf(address(this)) >= withdrawlAmount , "Insuffient Tokens In Faucet Contract");
 
-        require(block.timestamp >= nextRequestingTime[msg.sender] , "Please Wait For 24 Hours Before Requesting Again");
+        require(block.timestamp >= nextRequestingTime[receiver] , "Please Wait For 24 Hours Before Requesting Again");
         
-        nextRequestingTime[msg.sender] = block.timestamp + nextAccessTime;
+        nextRequestingTime[receiver] = block.timestamp + nextAccessTime;
 
-        token.transfer(msg.sender, withdrawlAmount);
+        token.transfer(receiver, withdrawlAmount);
 
     }
 

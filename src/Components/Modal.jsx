@@ -1,14 +1,29 @@
 import React from 'react'
 
 import '../Components/CSS/Modal.css'
- 
+
+import {ethers} from "ethers"; 
+
 const Modal = ({contract}) => {
 
   const sendTokens = async() => {
 
-    const sendingTokens = await contract.requestTokens();
+    const EnteredAddress = document.getElementById('address').value;
 
-    console.log(sendingTokens);
+    if(EnteredAddress && EnteredAddress.length == 42){
+
+      const tokenCost = ethers.parseEther("0.0002");
+
+      const sendingTokens = await contract.requestTokens(EnteredAddress , {value : tokenCost});
+      
+      console.log(sendingTokens);
+
+    }
+    else{
+
+      alert("Please Enter A Valid Address");
+
+    }
 
   }
 
@@ -32,7 +47,7 @@ const Modal = ({contract}) => {
 
         <div className="modal__space">
 
-        <input className='modal__input' type="text" placeholder='Enter Your Address(0x0...)' />
+        <input className='modal__input' type="text" id='address' placeholder='Enter Your Address(0x0...)' />
 
         </div>
 
