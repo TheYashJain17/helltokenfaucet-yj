@@ -73,17 +73,45 @@ const Navbar = () => {
 
       // console.log(contract);
   
+  }
 }
 
-}  
+const checkOnchanges = () => {
+
+    window.ethereum.on("accountsChanged" , (accounts) => {
+      
+      setAccount(accounts[0]);
+
+      window.location.reload();
+
+
+    })
+
+    window.ethereum.on("chainChanged" , (chainId) => {
+
+      if(chainId != '0x13881'){
+
+        alert("Please Move To Mumbai Polygon Network");
+
+      }
+      else{
+
+        window.location.reload();
+
+      }
+
+    })
+
+}
+  
 
   useEffect(() => {
 
     getConnectedAccounts();
 
+    checkOnchanges();
+
     setContractInstance();
-
-
 
   } , [account])
  
