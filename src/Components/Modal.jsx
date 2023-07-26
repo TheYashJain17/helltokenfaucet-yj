@@ -4,7 +4,7 @@ import '../Components/CSS/Modal.css'
 
 import {ethers} from "ethers"; 
 
-const Modal = ({contract}) => {
+const Modal = ({contract , account}) => {
 
   const sendTokens = async() => {
 
@@ -47,11 +47,11 @@ const Modal = ({contract}) => {
 
         <div className="modal__space">
 
-        <input className='modal__input' type="text" id='address' placeholder='Enter Your Address(0x0...)' />
+        <input className='modal__input' type="text" id='address' placeholder='Enter Your Address(0x...)' />
 
         </div>
 
-        <button className="modal__button" onClick={sendTokens} >Send Tokens</button>
+        <button className="modal__button" onClick={sendTokens} disabled={!account}>Send Tokens</button>
 
         <div className="modal__anotherspace">Transaction Data</div>
 

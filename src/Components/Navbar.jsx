@@ -151,6 +151,7 @@ const checkOnchanges = () => {
     <Modal
 
     contract={contract}
+    account={account}
 
     />
   

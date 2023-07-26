@@ -92,6 +92,14 @@
     
 }
 
+.modal__button:disabled{
+
+    background-color: white;
+    color: black;
+    cursor: default;
+
+}
+
 .modal__anotherspace{
 
     height: 40px;
