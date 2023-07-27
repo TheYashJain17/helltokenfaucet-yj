@@ -13,10 +13,10 @@ const Navbar = () => {
   const {ethereum} = window;
 
   const [account , setAccount] = useState(null);
-
-  const [signer , setSigner] = useState(null);
   
   const [contract , setContract] = useState();
+
+  const [chainId , setChainId] = useState(true);
 
   const connectWallet = async() => {
 
@@ -48,7 +48,7 @@ const Navbar = () => {
       }
       else{
 
-        // alert("Please Connect To Metamask With Connect Wallet Button");
+        // alert("Please Connect To Metamask With Connect Wallet Button To Proceed Further");
   
       }
 
@@ -89,9 +89,11 @@ const checkOnchanges = () => {
 
     window.ethereum.on("chainChanged" , (chainId) => {
 
-      if(chainId != '0x13881'){
+      if(chainId != '0x13881' && account != null){
 
-        alert("Please Move To Mumbai Polygon Network");
+        alert("Please Move to mumbai polygon network");
+
+        setChainId(false);
 
       }
       else{
@@ -103,6 +105,52 @@ const checkOnchanges = () => {
     })
 
 }
+
+const checkChainid = async() => {
+
+  try {
+  
+    const chainId = await window.ethereum.request({method : "eth_chainId"});
+
+    const polygonChainId = '0x13881';
+
+    if(chainId != polygonChainId){
+
+      setChainId(false);
+
+    }
+
+  } catch (error) {
+
+    console.log(error);
+    
+}
+
+}
+
+const changeToMumbaiNetwork = async() => {
+
+  const polygonChainId = '0x13881';
+
+  try {
+
+    await window.ethereum.request({
+
+      method : "wallet_switchEthereumChain",
+      params : [{chainId : polygonChainId}]
+
+    })
+
+    setChainId(true);
+    
+  } catch (error) {
+
+    console.log(error);
+    
+  }
+
+}
+
   
 
   useEffect(() => {
@@ -110,6 +158,8 @@ const checkOnchanges = () => {
     getConnectedAccounts();
 
     checkOnchanges();
+
+    account && checkChainid();
 
     setContractInstance();
 
@@ -125,8 +175,18 @@ const checkOnchanges = () => {
 
     <div className="nav__title">Hell Token (HT)</div>
 
-    <button className="nav__changenetwork">Change Network</button>
-    
+  
+  {
+    !chainId ? 
+
+    (<button className="nav__changenetwork" onClick={changeToMumbaiNetwork}>Change Network</button>)
+
+    :
+
+    ("")
+
+  }
+
 
     {
 
