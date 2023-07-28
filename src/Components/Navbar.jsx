@@ -76,7 +76,7 @@ const Navbar = () => {
   }
 }
 
-const checkOnchanges = () => {
+const checkOnChanges = () => {
 
     window.ethereum.on("accountsChanged" , (accounts) => {
       
@@ -157,7 +157,7 @@ const changeToMumbaiNetwork = async() => {
 
     getConnectedAccounts();
 
-    checkOnchanges();
+    checkOnChanges();
 
     account && checkChainid();
 
@@ -212,6 +212,9 @@ const changeToMumbaiNetwork = async() => {
 
     contract={contract}
     account={account}
+    chainId={chainId}
+    checkChainid={checkChainid}
+    checkOnChanges={checkOnChanges}
 
     />
   

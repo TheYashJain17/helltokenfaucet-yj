@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import '../Components/CSS/Modal.css'
 
 import {ethers} from "ethers"; 
 
-const Modal = ({contract , account}) => {
+const Modal = ({contract , account , chainId}) => {
 
   const sendTokens = async() => {
 
@@ -28,6 +28,7 @@ const Modal = ({contract , account}) => {
   }
 
 
+
   return (
 
     <>
@@ -45,18 +46,35 @@ const Modal = ({contract , account}) => {
 
         </div>
 
+        {
+
+          chainId ?
+          
+        (<div>
+
+          
         <div className="modal__space">
 
         <input className='modal__input' type="text" id='address' placeholder='Enter Your Address(0x...)' />
 
         </div>
 
-        <button className="modal__button" onClick={sendTokens} disabled={!account}>Send Tokens</button>
+        
+
+        <button className="modal__button" onClick={sendTokens} disabled={!account && !chainId}>Send Tokens</button>
 
         <div className="modal__anotherspace">Transaction Data</div>
 
         <input  className="modal__anotherinput" placeholder='Transaction Hash' readOnly/>
 e
+      </div>)
+
+      :
+
+      <div className='modal_networkerror'>Please Change Your Network To Mumabi Polygon With Change Network Button To Get The Tokens</div>
+        
+      }
+
     </>
 
   )

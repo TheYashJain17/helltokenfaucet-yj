@@ -29,6 +29,21 @@
 
 }
 
+.modal_networkerror {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    font: message-box;
+    color: red;
+    font-weight: 600;
+
+    margin-top: 60px;
+
+}
+
 .modal__space{
 
     height: 230px;
