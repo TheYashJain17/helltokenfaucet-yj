@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import '../Components/CSS/Modal.css'
 
 import {ethers} from "ethers"; 
 
+
 const Modal = ({contract , account , chainId}) => {
 
+  const [transactionHash , setTransactionHash] = useState("");
+
   const sendTokens = async() => {
+
+    setTransactionHash("");
 
     const EnteredAddress = document.getElementById('address').value;
 
@@ -17,6 +22,10 @@ const Modal = ({contract , account , chainId}) => {
       const sendingTokens = await contract.requestTokens(EnteredAddress , {value : tokenCost});
       
       console.log(sendingTokens);
+
+      // console.log(sendingTokens.hash);
+
+      setTransactionHash(sendingTokens.hash);
 
     }
     else{
@@ -32,6 +41,7 @@ const Modal = ({contract , account , chainId}) => {
   return (
 
     <>
+
 
         <div className="modal__title">
 
@@ -61,12 +71,13 @@ const Modal = ({contract , account , chainId}) => {
 
         
 
-        <button className="modal__button" onClick={sendTokens} disabled={!account && !chainId}>Send Tokens</button>
+        <button className="modal__button" onClick={sendTokens} disabled={!account}>Send Tokens</button>
 
         <div className="modal__anotherspace">Transaction Data</div>
 
-        <input  className="modal__anotherinput" placeholder='Transaction Hash' readOnly/>
-e
+        <input  className="modal__anotherinput" placeholder='Transaction Hash'
+         value={transactionHash ? transactionHash : ""} readOnly/>
+
       </div>)
 
       :
