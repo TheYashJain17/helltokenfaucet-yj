@@ -4,10 +4,11 @@ import '../Components/CSS/Modal.css'
 
 import {ethers} from "ethers"; 
 
-
 const Modal = ({contract , account , chainId}) => {
 
   const [transactionHash , setTransactionHash] = useState("");
+
+  const contractAddress = '0xF99325f33090419759713a37Faf5C3e83fc12Aa3';
 
   const sendTokens = async() => {
 
@@ -42,13 +43,30 @@ const Modal = ({contract , account , chainId}) => {
 
     <>
 
+    {
+      transactionHash ? 
+
+      (<div className="modal__contractaddress">{contractAddress}
+      
+      <br />
+      <br />
+      
+       Copy This Address And Paste This Inside Metamask Import Tokens Section To See The Tokens
+
+      </div>)
+
+      : 
+
+      ("")
+
+    }
+
 
         <div className="modal__title">
 
         <h1>FAUCET</h1> 
 
         </div>
-
 
         <div className="modal__secondtitle">
 
