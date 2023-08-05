@@ -16,7 +16,7 @@ contract HellToken is ERC20Capped , ERC20Burnable{
 
         owner = payable(msg.sender);
 
-        _mint(msg.sender , 69 * (10 ** decimals()));
+        _mint(msg.sender , 6900 * (10 ** decimals()));
 
     }
 

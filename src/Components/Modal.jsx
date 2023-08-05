@@ -8,13 +8,16 @@ const Modal = ({contract , account , chainId}) => {
 
   const [transactionHash , setTransactionHash] = useState("");
 
-  const contractAddress = '0xF99325f33090419759713a37Faf5C3e83fc12Aa3';
+  const contractAddress = '0x12E9215e14d0bAB1ce3C40eEA2798B7777AE06f5';
 
   const sendTokens = async() => {
 
-    setTransactionHash("");
+    
+    try {
 
-    const EnteredAddress = document.getElementById('address').value;
+      setTransactionHash("");
+
+      const EnteredAddress = document.getElementById('address').value;
 
     if(EnteredAddress && EnteredAddress.length == 42){
 
@@ -34,10 +37,15 @@ const Modal = ({contract , account , chainId}) => {
       alert("Please Enter A Valid Address");
 
     }
+      
+    } catch (error) {
+
+      console.log(error.message)
+      
+    }
+
 
   }
-
-
 
   return (
 
@@ -46,12 +54,12 @@ const Modal = ({contract , account , chainId}) => {
     {
       transactionHash ? 
 
-      (<div className="modal__contractaddress">{contractAddress}
+      (<div className="modal__contractaddress">Address: {contractAddress} , Symbol: HT , Decimals: 18 
       
       <br />
       <br />
       
-       Copy This Address And Paste This Inside Metamask Import Tokens Section To See The Tokens
+       Copy And Paste These Inside Metamask Import Tokens Section To See The Tokens
 
       </div>)
 

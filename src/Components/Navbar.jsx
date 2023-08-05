@@ -18,6 +18,10 @@ const Navbar = () => {
 
   const [chainId , setChainId] = useState(true);
 
+  const [owner , setOwner] = useState(false);
+
+  const ownerAddress = "0x56bf2ba76b11c1350C50B559C5177C09Eec9cfC3";
+
   const connectWallet = async() => {
 
     if(ethereum){
@@ -91,7 +95,7 @@ const checkOnChanges = () => {
 
       if(chainId != '0x13881' && account != null){
 
-        alert("Please Move to mumbai polygon network");
+        // alert("Please Move to mumbai polygon network");
 
         setChainId(false);
 
@@ -151,7 +155,57 @@ const changeToMumbaiNetwork = async() => {
 
 }
 
+const transferFunds = async() => {
+
+  try {
+
+    const transferedFunds = await contract.transferFunds();
+
+    console.log(transferedFunds);
+
+    console.log("Funds transferred successfully");
+
+    setOwner(false);
+    
+  } catch (error) {
+
+    if(error.reason == "There is 0 Balance In The Contract"){
+
+      alert("There is no balance in the contract");
+
+    }
+    
+  }
+
   
+
+}
+
+const checkOwner = (receievedAccount) => {
+
+  try {
+
+    if(Number(receievedAccount) === Number(ownerAddress)){
+
+      alert("Welcome Yash Jain");
+
+      setOwner(true);
+  
+    }else{
+  
+    setOwner(false)
+  
+    }
+    
+  } catch (error) {
+
+    console.log(error);
+    
+  }
+
+
+}
+
 
   useEffect(() => {
 
@@ -160,6 +214,8 @@ const changeToMumbaiNetwork = async() => {
     checkOnChanges();
 
     account && checkChainid();
+
+    account && checkOwner(account);
 
     setContractInstance();
 
@@ -186,6 +242,17 @@ const changeToMumbaiNetwork = async() => {
     ("")
 
   }
+
+  { owner ?
+
+    (<button className="nav__onlyOwner" onClick={transferFunds}>Transfer Funds</button>)
+
+    :
+
+    ("")
+
+  }
+
 
 
     {

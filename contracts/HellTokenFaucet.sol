@@ -101,5 +101,15 @@ contract tokenFaucet{
 
     }
 
+    function transferFunds() external onlyOwner{
+
+        uint256 contractBal = address(this).balance;
+
+        require(contractBal > 0 ether, "There is 0 Balance In The Contract");
+
+        owner.transfer(contractBal);
+
+    }
+
 
 }
