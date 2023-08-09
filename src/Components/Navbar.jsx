@@ -4,6 +4,10 @@ import {ethers} from 'ethers';
 
 import './CSS/Navbar.css'
 
+import {ToastContainer , toast} from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 import contractInstance from '../Web3/ContractInstance';
 
 import Modal from '../Components/Modal'
@@ -33,7 +37,9 @@ const Navbar = () => {
     }
     else{
 
-      alert("Please Install Metamask");
+      // alert("Please Install Metamask");
+
+      toast.warn('Please Install Metamask');
 
     }
 
@@ -53,6 +59,8 @@ const Navbar = () => {
       else{
 
         // alert("Please Connect To Metamask With Connect Wallet Button To Proceed Further");
+
+        toast.warn("Please Connect To Metamask With Connect Wallet Button To Proceed Further");
   
       }
 
@@ -158,20 +166,25 @@ const changeToMumbaiNetwork = async() => {
 const transferFunds = async() => {
 
   try {
+      
+      const transferedFunds = await contract.transferFunds();
+      
+      console.log(transferedFunds)
+      
+      // console.log("Funds transferred successfully");
 
-    const transferedFunds = await contract.transferFunds();
+      toast.success('Funds transferred successfully');
+      
+      setOwner(false);
 
-    console.log(transferedFunds);
-
-    console.log("Funds transferred successfully");
-
-    setOwner(false);
     
   } catch (error) {
 
     if(error.reason == "There is 0 Balance In The Contract"){
 
-      alert("There is no balance in the contract");
+      //  alert("There is no balance in the contract");
+
+       toast.error("There is no balance in the contract");
 
     }
     
@@ -187,7 +200,9 @@ const checkOwner = (receievedAccount) => {
 
     if(Number(receievedAccount) === Number(ownerAddress)){
 
-      alert("Welcome Yash Jain");
+      // alert("Welcome Mr Yash Jain");
+
+      toast.success("Welcome Mr Yash Jain")
 
       setOwner(true);
   
@@ -231,6 +246,8 @@ const checkOwner = (receievedAccount) => {
 
     <div className="nav__title">Hell Token (HT)</div>
 
+    <ToastContainer/>
+
   
   {
     !chainId ? 
@@ -243,7 +260,7 @@ const checkOwner = (receievedAccount) => {
 
   }
 
-  { owner ?
+  { owner  ?
 
     (<button className="nav__onlyOwner" onClick={transferFunds}>Transfer Funds</button>)
 
@@ -257,7 +274,7 @@ const checkOwner = (receievedAccount) => {
 
     {
 
-    account ? (<button className="nav__connectbtn" >
+    account ? (<button className="nav__connectbtn" disabled={account} >
 
       {account.slice(0,6) + "..." + account.slice(39)}
 

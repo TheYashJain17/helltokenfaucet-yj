@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import '../Components/CSS/Modal.css'
 
 import {ethers} from "ethers"; 
 
+import {ToastContainer , toast} from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 const Modal = ({contract , account , chainId}) => {
 
   const [transactionHash , setTransactionHash] = useState("");
 
-  const contractAddress = '0x12E9215e14d0bAB1ce3C40eEA2798B7777AE06f5';
+  const tokenAddress = '0x137a611E0a689aBD5d5cc6D660A054fe8fe6975d';
 
   const sendTokens = async() => {
 
-    
     try {
 
       setTransactionHash("");
@@ -31,19 +34,31 @@ const Modal = ({contract , account , chainId}) => {
 
       setTransactionHash(sendingTokens.hash);
 
+      toast.success("Token Sent Successfully");
+
     }
     else{
 
-      alert("Please Enter A Valid Address");
+      // alert("Please Enter A Valid Address");
+
+      toast.error("Please Enter A Valid Address");
 
     }
       
     } catch (error) {
 
-      console.log(error.message)
+      console.log(error.reason)
+
+      if(error.reason === "Please Wait For 24 Hours Before Requesting Again"){
+
+        //alert("Please Wait For 24 Hours Before Requesting Again");
+
+        toast.error("Please Wait For 24 Hours Before Requesting Again")
+
+      }
+      
       
     }
-
 
   }
 
@@ -51,15 +66,17 @@ const Modal = ({contract , account , chainId}) => {
 
     <>
 
+    <ToastContainer/>
+
     {
       transactionHash ? 
 
-      (<div className="modal__contractaddress">Address: {contractAddress} , Symbol: HT , Decimals: 18 
+      (<div className="modal__contractaddress">Address: {tokenAddress}
       
       <br />
       <br />
       
-       Copy And Paste These Inside Metamask Import Tokens Section To See The Tokens
+       Copy And Paste This Address Inside Metamask Import Tokens Section To See The Tokens
 
       </div>)
 

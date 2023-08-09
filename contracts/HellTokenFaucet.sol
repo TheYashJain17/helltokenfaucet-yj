@@ -22,7 +22,6 @@ contract tokenFaucet{
 
     uint256 public nextAccessTime;
 
-
     mapping(address => uint256) nextRequestingTime;
 
 
@@ -41,7 +40,7 @@ contract tokenFaucet{
 
         withdrawlAmount = 1 * (10 ** 18);
 
-        nextAccessTime = 1 minutes;
+        nextAccessTime = 1 days;
 
     }
 
@@ -83,7 +82,7 @@ contract tokenFaucet{
 
     function changeNextAccessTime(uint256 _nextAccessTime) external onlyOwner{
 
-        nextAccessTime = _nextAccessTime * 1 minutes;
+        nextAccessTime = _nextAccessTime * 1 days;
 
     }
 
@@ -103,7 +102,7 @@ contract tokenFaucet{
 
     function transferFunds() external onlyOwner{
 
-        uint256 contractBal = address(this).balance;
+        uint256 contractBal =  address(this).balance;
 
         require(contractBal > 0 ether, "There is 0 Balance In The Contract");
 

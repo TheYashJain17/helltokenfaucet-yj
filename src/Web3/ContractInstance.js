@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 
 import ABI from "../Artifacts/contracts/HellTokenFaucet.sol/tokenFaucet.json";
 
-const contractAddress = '0x12E9215e14d0bAB1ce3C40eEA2798B7777AE06f5';
+const contractAddress = '0x4244F698B4e0Aa2273279292f8Fd5373eAd894D3';
 
 const abi = ABI.abi;
 
