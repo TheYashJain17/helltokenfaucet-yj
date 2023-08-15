@@ -8,6 +8,8 @@ import {ToastContainer , toast} from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import polygon from '../Images/polygon.svg';
+
 const Modal = ({contract , account , chainId}) => {
 
   const [transactionHash , setTransactionHash] = useState("");
@@ -30,11 +32,13 @@ const Modal = ({contract , account , chainId}) => {
       
       console.log(sendingTokens);
 
-      // console.log(sendingTokens.hash);
+      console.log(sendingTokens.hash);
 
       setTransactionHash(sendingTokens.hash);
 
-      toast.success("Token Sent Successfully");
+      console.log(`This is our transaction hash${transactionHash}`)
+
+      toast.success("Token Transferred Successfully");
 
     }
     else{
@@ -118,14 +122,38 @@ const Modal = ({contract , account , chainId}) => {
 
         <div className="modal__anotherspace">Transaction Data</div>
 
-        <input  className="modal__anotherinput" placeholder='Transaction Hash'
-         value={transactionHash ? transactionHash : ""} readOnly/>
+          <div className="modal__anotherinput">
+
+          <div className="modal__transactionhash" >
+
+            { 
+              
+              transactionHash ? 
+
+              <img src={polygon} alt="polygonscan" />
+
+              :
+
+              ""
+
+            }
+
+            
+            <a href={`https://mumbai.polygonscan.com/tx/${transactionHash}`} target='_blank'>
+
+            {transactionHash ? transactionHash : ""}
+
+            </a>
+
+            </div>
+
+          </div>
 
       </div>)
 
       :
 
-      <div className='modal_networkerror'>Please Change Your Network To Mumabi Polygon With Change Network Button To Get The Tokens</div>
+      <div className='modal_networkerror'>Please Change Your Network To Mumbai Polygon With Change Network Button To Get The Tokens</div>
         
       }
 

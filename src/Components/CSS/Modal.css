@@ -165,24 +165,41 @@
     margin-left: 336px;
     margin-top: 20px;
 
-    height: 30px;
+    height: 35px;
     width: 726px;
 
     border-radius: 6px;
-    border: solid 1px;
+    border: solid 1px black;
 
     font-size: 20px;
 
 }
 
-.modal__anotherinput::placeholder{
+.modal__transactionhash{
 
-    padding-left: 8px;
-    
-    font-size: 15px;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.modal__transactionhash a{
+
+    color: black;
+
+    font-size: 19px;
     
 }
+
+.modal__transactionhash img{
+
+    padding: 2px 0px 2px 1px;
+
+    cursor: pointer;
+
+}
+
+
 
 
 
