@@ -43,8 +43,6 @@ const Modal = ({contract , account , chainId}) => {
     }
     else{
 
-      // alert("Please Enter A Valid Address");
-
       toast.error("Please Enter A Valid Address");
 
     }
@@ -54,8 +52,6 @@ const Modal = ({contract , account , chainId}) => {
       console.log(error.reason)
 
       if(error.reason === "Please Wait For 24 Hours Before Requesting Again"){
-
-        //alert("Please Wait For 24 Hours Before Requesting Again");
 
         toast.error("Please Wait For 24 Hours Before Requesting Again")
 

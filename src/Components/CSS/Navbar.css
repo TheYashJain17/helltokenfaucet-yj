@@ -59,14 +59,38 @@
 
 }
 
-.nav__connectbtn:disabled{
+.nav__connectedbtn{
+
+    margin-right: 50px;
+    height: 40px;
+    width: 140px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     background-color: #e9236f;
     color: white;
 
+    font-size: 17px;
+    font-weight: 600;
+    font-family: serif;
+
+    border-radius: 7px;
+    /* cursor: pointer; */
     cursor: default;
+    border: none;
+
 
 }
+
+.nav__connectedbtn:hover{
+
+    cursor: pointer;
+
+}
+
+
 
 .nav__changenetwork{
 
@@ -122,4 +146,10 @@
 
     background-color: white;
     color: black;
+}
+
+.nav__copyaddress{
+
+    display: none;
+
 }

@@ -37,8 +37,6 @@ const Navbar = () => {
     }
     else{
 
-      // alert("Please Install Metamask");
-
       toast.warn('Please Install Metamask');
 
     }
@@ -54,11 +52,12 @@ const Navbar = () => {
       if(connectedAccounts.length > 0){
 
         setAccount(connectedAccounts[0]);
+
+        toast.info("You Can Click On Address Button To Copy The Address")
+
         
       }
       else{
-
-        // alert("Please Connect To Metamask With Connect Wallet Button To Proceed Further");
 
         toast.warn("Please Connect To Metamask With Connect Wallet Button To Proceed Further");
   
@@ -81,9 +80,6 @@ const Navbar = () => {
   
       setContract(contractWithSginer);
 
-      console.log(contractWithSginer);
-
-      // console.log(contract);
   
   }
 }
@@ -102,8 +98,6 @@ const checkOnChanges = () => {
     window.ethereum.on("chainChanged" , (chainId) => {
 
       if(chainId != '0x13881' && account != null){
-
-        // alert("Please Move to mumbai polygon network");
 
         setChainId(false);
 
@@ -171,8 +165,6 @@ const transferFunds = async() => {
       
       console.log(transferedFunds)
       
-      // console.log("Funds transferred successfully");
-
       toast.success('Funds transferred successfully');
       
       setOwner(false);
@@ -181,8 +173,6 @@ const transferFunds = async() => {
   } catch (error) {
 
     if(error.reason == "There is 0 Balance In The Contract"){
-
-      //  alert("There is no balance in the contract");
 
        toast.error("There is no balance in the contract");
 
@@ -199,8 +189,6 @@ const checkOwner = (receievedAccount) => {
   try {
 
     if(Number(receievedAccount) === Number(ownerAddress)){
-
-      // alert("Welcome Mr Yash Jain");
 
       toast.success("Welcome Mr Yash Jain")
 
@@ -221,12 +209,36 @@ const checkOwner = (receievedAccount) => {
 
 }
 
+const copyAddress = () => {
+
+  document.getElementById("copyaddressbtn").addEventListener('click' , () => {
+
+    let copiedText = document.getElementById('copyaddress').textContent;
+
+    navigator.clipboard.writeText(copiedText)
+
+
+    .then(() => {
+
+      toast.success("Address Copied Successfully");
+
+    })
+    .catch(() => {
+
+      toast.error("Some Error Occured");
+
+    })
+
+  })
+
+}
+
 
   useEffect(() => {
 
     getConnectedAccounts();
 
-    checkOnChanges();
+   account && checkOnChanges();
 
     account && checkChainid();
 
@@ -274,15 +286,29 @@ const checkOwner = (receievedAccount) => {
 
     {
 
-    account ? (<button className="nav__connectbtn" disabled={account} >
+    account ? (<button className="nav__connectedbtn" id='copyaddressbtn' onClick={copyAddress}>
 
       {account.slice(0,6) + "..." + account.slice(39)}
 
     </button>)
 
+    
+
     :
 
       (<button className="nav__connectbtn" onClick={connectWallet}>Connect Wallet</button>)
+
+    }
+
+    {
+
+      account ?
+
+      <div className="nav__copyaddress" id='copyaddress'>{account}</div>
+
+      :
+
+      ""
 
     }
 
